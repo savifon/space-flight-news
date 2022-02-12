@@ -14,7 +14,7 @@ const Header = () => {
       sx={{
         position: "relative",
         backgroundColor: "grey.800",
-        mb: 4,
+        mb: 10,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
