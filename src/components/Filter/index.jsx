@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-const Filter = ({ children }) => {
+import { AppContext } from "../../context";
+
+const Filter = () => {
+  const { handleSort } = useContext(AppContext);
+  const [sort, setSort] = useState("desc");
+
+  useEffect(() => {
+    handleSort(sort);
+  }, [sort]);
+
   return (
     <FormControl sx={{ width: "20ch" }} variant="outlined">
       <InputLabel size="small" id="demo-simple-select-label">
@@ -15,12 +24,12 @@ const Filter = ({ children }) => {
         size="small"
         labelId="demo-simple-select-label"
         id="demo-simple-select"
-        value=""
+        value={sort}
         label="Sort"
-        onChange={() => console.log("selecionou....", this.value)}
+        onChange={(e) => setSort(e.target.value)}
       >
-        <MenuItem value="ASC">Mais antigas</MenuItem>
-        <MenuItem value="DESC">Mais novas</MenuItem>
+        <MenuItem value="asc">Mais antigas</MenuItem>
+        <MenuItem value="desc">Mais novas</MenuItem>
       </Select>
     </FormControl>
   );

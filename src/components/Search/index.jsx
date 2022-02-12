@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -7,7 +7,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
 
+import { AppContext } from "../../context";
+
 const Search = () => {
+  const { handleContains } = useContext(AppContext);
+  const [contains, setContains] = useState("");
+
   return (
     <>
       <FormControl sx={{ width: "25ch" }} variant="outlined">
@@ -17,14 +22,14 @@ const Search = () => {
         <OutlinedInput
           id="search"
           type="text"
-          value=""
+          value={contains}
           size="small"
-          onChange={() => console.log("digitou.....")}
+          onChange={(e) => setContains(e.target.value)}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
                 aria-label="search article"
-                onClick={() => console.log("pesquisou.....")}
+                onClick={() => handleContains(contains)}
                 edge="end"
                 size="small"
               >

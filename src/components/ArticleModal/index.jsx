@@ -33,7 +33,7 @@ const Backdrop = styled("div")`
 const style = {
   width: "80vw",
   maxWidth: "900px",
-  bgcolor: "background.paper",
+  bgcolor: "#FFF",
   border: "2px solid #D07017",
   px: 5,
   py: 10,

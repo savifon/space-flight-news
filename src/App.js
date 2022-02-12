@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./App.css";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import Header from "./components/Header";
-import { getArticles } from "./services/api";
 import ArticleList from "./components/ArticleList";
+import { AppProvider } from "./context";
 
 const theme = createTheme({
   palette: {
-    mode: "light",
+    mode: "dark",
     primary: {
       light: "#d98c45",
       main: "#D07017",
@@ -29,20 +29,13 @@ const theme = createTheme({
 });
 
 function App() {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    (async () =>
-      await getArticles("desc", "", "", "").then((response) => {
-        setArticles(response.data);
-      }))();
-  }, []);
-
   return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <ArticleList articles={articles} />
-    </ThemeProvider>
+    <AppProvider>
+      <ThemeProvider theme={theme}>
+        <Header />
+        <ArticleList />
+      </ThemeProvider>
+    </AppProvider>
   );
 }
 
