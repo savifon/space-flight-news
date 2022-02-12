@@ -1,12 +1,19 @@
 import React, { useEffect } from "react";
+import "./App.css";
 
 import Header from "./components/Header";
-import Search from "./components/Search";
-import Filter from "./components/Filter";
+
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { getArticles } from "./services/api";
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      mode: "dark",
+    },
+  });
+
   useEffect(() => {
     handleArticles();
   }, []);
@@ -18,13 +25,9 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Header>
-        <h1>Space Flight News</h1>
-        <Search />
-        <Filter />
-      </Header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Header />
+    </ThemeProvider>
   );
 }
 

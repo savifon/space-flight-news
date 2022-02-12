@@ -1,11 +1,77 @@
 import React from "react";
 
-const Header = ({ children }) => {
+import Search from "../Search";
+import Filter from "../Filter";
+
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+
+const Header = () => {
   return (
-    <div>
-      <h1>Header</h1>
-      {children}
-    </div>
+    <Paper
+      sx={{
+        position: "relative",
+        backgroundColor: "grey.800",
+        mb: 4,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundImage:
+          "url(https://img.freepik.com/free-vector/gradient-galaxy-background_23-2148983655.jpg?w=1380)",
+      }}
+    >
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          right: 0,
+          left: 0,
+          backgroundColor: "rgba(0,0,0,.5)",
+        }}
+      />
+      <Grid
+        container
+        direction="row"
+        gap="10px"
+        alignItems="center"
+        justifyContent="flex-end"
+        sx={{
+          p: 2,
+        }}
+      >
+        <Search />
+        <Filter />
+      </Grid>
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Grid item position="relative" mt={6}>
+          <img
+            width="100px"
+            src="https://img.freepik.com/free-vector/rocket-background-flat-style_23-2147904992.jpg?w=826"
+            alt="rocket-background-flat-style"
+          />
+        </Grid>
+        <Grid item>
+          <Box
+            sx={{
+              position: "relative",
+              p: { xs: 3, md: 6 },
+            }}
+          >
+            <Typography component="h1" variant="h3">
+              Space Flight News
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 };
 
