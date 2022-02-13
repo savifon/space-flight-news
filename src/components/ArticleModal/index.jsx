@@ -6,6 +6,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import styled from "@mui/system/styled";
 import ModalUnstyled from "@mui/base/ModalUnstyled";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 import { formatDate } from "../../utils/format";
 
@@ -33,12 +34,13 @@ const Backdrop = styled("div")`
 `;
 
 const style = {
+  position: "relative",
   width: "80vw",
   maxWidth: "900px",
   bgcolor: "#FFF",
   border: "2px solid #D07017",
-  px: 5,
-  py: 10,
+  px: { xs: 3, md: 5 },
+  py: { xs: 5, md: 10 },
 };
 
 const ArticleModal = ({ article, open, handleClose }) => {
@@ -51,7 +53,13 @@ const ArticleModal = ({ article, open, handleClose }) => {
       BackdropComponent={Backdrop}
     >
       <Box sx={style}>
-        <Grid container sx={{ flexWrap: "nowrap", gap: "20px" }}>
+        <CancelIcon
+          color="secondary"
+          fontSize="large"
+          sx={{ position: "absolute", top: 10, right: 10, cursor: "pointer" }}
+          onClick={handleClose}
+        />
+        <Grid container sx={{ flexWrap: { md: "nowrap" }, gap: "20px" }}>
           <Grid item xs={5}>
             <img
               src={article.imageUrl}

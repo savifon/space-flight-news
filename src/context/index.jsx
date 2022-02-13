@@ -32,7 +32,17 @@ export const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    (async () =>
+    (async () => {
+      await getArticles(sort, contains, limit, start).then((response) => {
+        const currentArticles = response.data;
+        setArticles(currentArticles);
+        setLoading(false);
+      });
+    })();
+  }, [sort]);
+
+  useEffect(() => {
+    (async () => {
       await getArticles(sort, contains, limit, start).then((response) => {
         if (response.data.length) {
           const currentArticles = articles.length
@@ -43,8 +53,9 @@ export const AppProvider = ({ children }) => {
           setDisplayNextPage(false);
         }
         setLoading(false);
-      }))();
-  }, [sort, contains, limit, start]);
+      });
+    })();
+  }, [contains, limit, start]);
 
   return (
     <AppContext.Provider
