@@ -7,6 +7,8 @@ import Button from "@mui/material/Button";
 import styled from "@mui/system/styled";
 import ModalUnstyled from "@mui/base/ModalUnstyled";
 
+import { formatDate } from "../../utils/format";
+
 const StyledModal = styled(ModalUnstyled)`
   position: fixed;
   z-index: 1300;
@@ -72,7 +74,9 @@ const ArticleModal = ({ article, open, handleClose }) => {
               {article.title}
             </Typography>
 
-            <Typography component="p">{article.publishedAt}</Typography>
+            <Typography component="p">
+              {formatDate(article.publishedAt)}
+            </Typography>
 
             <Typography component="p">{article.summary}</Typography>
           </Grid>

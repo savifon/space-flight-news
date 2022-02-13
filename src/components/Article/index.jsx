@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
 
 import ArticleModal from "../ArticleModal";
+import { formatDate } from "../../utils/format";
 
 const Article = ({ article, index }) => {
   const [open, setOpen] = useState(false);
@@ -56,7 +57,9 @@ const Article = ({ article, index }) => {
 
           <Grid container sx={{ justifyContent: "space-between" }}>
             <Grid item>
-              <Typography component="p">{article.publishedAt}</Typography>
+              <Typography component="p">
+                {formatDate(article.publishedAt)}
+              </Typography>
             </Grid>
             <Grid item>
               <Chip

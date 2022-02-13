@@ -34,12 +34,13 @@ const Header = () => {
       />
       <Grid
         container
-        direction="row"
-        gap="10px"
-        alignItems="center"
-        justifyContent="flex-end"
         sx={{
           p: 2,
+          maxWidth: { xs: "95vw", md: "80vw" },
+          direction: "row",
+          gap: "10px",
+          alignItems: "center",
+          justifyContent: { xs: "center", md: "flex-end" },
         }}
       >
         <Search />
@@ -50,6 +51,7 @@ const Header = () => {
         direction="column"
         alignItems="center"
         justifyContent="center"
+        sx={{ minHeight: "40vh" }}
       >
         <Grid item position="relative" mt={6}>
           <img
@@ -65,7 +67,11 @@ const Header = () => {
               p: { xs: 3, md: 6 },
             }}
           >
-            <Typography component="h1" variant="h3">
+            <Typography
+              component="h1"
+              variant="h3"
+              sx={{ textAlign: "center" }}
+            >
               Space Flight News
             </Typography>
           </Box>

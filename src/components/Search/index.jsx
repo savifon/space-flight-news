@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router";
 
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -7,8 +8,17 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
 
+import { AppContext } from "../../context";
+
 const Search = () => {
+  const { handleContains } = useContext(AppContext);
   const [contains, setContains] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (value) => {
+    handleContains(value);
+    navigate(`?contains=${contains}`);
+  };
 
   return (
     <>
@@ -22,11 +32,12 @@ const Search = () => {
           value={contains}
           size="small"
           onChange={(e) => setContains(e.target.value)}
+          onKeyDown={(e) => e.keyCode === 13 && handleSearch(contains)}
           endAdornment={
             <InputAdornment position="end">
               <IconButton
                 aria-label="search article"
-                onClick={() => (window.location.href = `?contains=${contains}`)}
+                onClick={() => handleSearch(contains)}
                 edge="end"
                 size="small"
               >

@@ -3,9 +3,8 @@ import "./App.css";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import Header from "./components/Header";
-import ArticleList from "./components/ArticleList";
 import { AppProvider } from "./context";
+import AppRoutes from "./routes";
 
 const theme = createTheme({
   palette: {
@@ -32,8 +31,7 @@ function App() {
   return (
     <AppProvider>
       <ThemeProvider theme={theme}>
-        <Header />
-        <ArticleList />
+        <AppRoutes />
       </ThemeProvider>
     </AppProvider>
   );
