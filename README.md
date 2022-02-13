@@ -2,6 +2,8 @@
 
 Aplicação Web desenvolvida em React que lista informações sobre voos espaciais extraídas da API Space Flight News, como imagem, título, introdução, data, categoria e link original da publicação.
 
+🔗 Link para visualizar a aplicação em funcionamento: https://space-flight-news-savifon.vercel.app/
+
 ## Tecnologias
 
 -   ReactJS
