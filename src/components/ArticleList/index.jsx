@@ -4,27 +4,37 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import Article from "../Article";
 import { AppContext } from "../../context";
 
 const ArticleList = () => {
-  const { articles, handleNextPage } = useContext(AppContext);
+  const { loading, articles, handleNextPage, displayNextPage } =
+    useContext(AppContext);
 
   return (
-    <Container maxWidth="md">
-      <Box>
-        {articles?.length ? (
+    <Container maxWidth="md" sx={{ mb: 10 }}>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        {loading ? (
+          <CircularProgress />
+        ) : articles.length ? (
           <>
             {articles.map((article, index) => (
               <Article article={article} index={index} key={article.id} />
             ))}
-            <Button onClick={handleNextPage} variant="contained">
-              Carregar Mais
-            </Button>
+            {displayNextPage ? (
+              <Button onClick={handleNextPage} variant="contained">
+                Carregar Mais
+              </Button>
+            ) : (
+              <Typography component="p">Fim dos resultados.</Typography>
+            )}
           </>
         ) : (
-          <Typography component="p">Aguarde, carregando...</Typography>
+          <Typography component="p">Não foram localizados artigos.</Typography>
         )}
       </Box>
     </Container>

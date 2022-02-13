@@ -5,12 +5,15 @@ import { getArticles } from "../services/api";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
+  const queryParams = new URLSearchParams(window.location.search);
+
   const limit = 10;
   const [start, setStart] = useState(0);
   const [sort, setSort] = useState("desc");
-  const [contains, setContains] = useState("");
-  const [newArticles, setNewArticles] = useState([]);
+  const [contains, setContains] = useState(queryParams.get("contains"));
   const [articles, setArticles] = useState([]);
+  const [displayNextPage, setDisplayNextPage] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const handleNextPage = () => {
     const newStart = start + limit;
@@ -22,19 +25,37 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleContains = (contains) => {
+    setLoading(true);
+    setArticles([]);
+    setStart(0);
     setContains(contains);
   };
 
   useEffect(() => {
     (async () =>
       await getArticles(sort, contains, limit, start).then((response) => {
-        setArticles(response.data);
+        if (response.data.length) {
+          const currentArticles = articles.length
+            ? [].concat(articles, response.data)
+            : response.data;
+          setArticles(currentArticles);
+        } else {
+          setDisplayNextPage(false);
+        }
+        setLoading(false);
       }))();
   }, [sort, contains, limit, start]);
 
   return (
     <AppContext.Provider
-      value={{ articles, handleNextPage, handleSort, handleContains }}
+      value={{
+        loading,
+        articles,
+        handleNextPage,
+        handleSort,
+        handleContains,
+        displayNextPage,
+      }}
     >
       {children}
     </AppContext.Provider>

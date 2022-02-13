@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
@@ -11,9 +11,10 @@ const Filter = () => {
   const { handleSort } = useContext(AppContext);
   const [sort, setSort] = useState("desc");
 
-  useEffect(() => {
-    handleSort(sort);
-  }, [sort]);
+  const handleOption = (value) => {
+    setSort(value);
+    handleSort(value);
+  };
 
   return (
     <FormControl sx={{ width: "20ch" }} variant="outlined">
@@ -26,7 +27,7 @@ const Filter = () => {
         id="demo-simple-select"
         value={sort}
         label="Sort"
-        onChange={(e) => setSort(e.target.value)}
+        onChange={(e) => handleOption(e.target.value)}
       >
         <MenuItem value="asc">Mais antigas</MenuItem>
         <MenuItem value="desc">Mais novas</MenuItem>
