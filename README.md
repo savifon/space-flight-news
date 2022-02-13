@@ -1,0 +1,21 @@
+## Space Flight News 🚀
+
+Aplicação Web desenvolvida em React que lista informações sobre voos espaciais extraídas da API Space Flight News, como imagem, título, introdução, data, categoria e link original da publicação.
+
+## Tecnologias
+
+-   ReactJS
+-   Context API
+-   Axios
+-   Material UI
+
+## Configuração
+
+Para baixar, executar e acessar o projeto, siga os passos:
+
+1. `git clone` neste projeto (ou download manual do repositório)
+2. `cd <PastaDoProjeto>`
+3. `npm install` ou `yarn install`
+5. `npm start` ou `yarn start`
+
+> This is a challenge by [Coodesh](https://coodesh.com/)
