@@ -16,8 +16,12 @@ const Search = () => {
   const navigate = useNavigate();
 
   const handleSearch = (value) => {
+    if (value) {
+      navigate(`?contains=${contains}`);
+    } else {
+      navigate("/");
+    }
     handleContains(value);
-    navigate(`?contains=${contains}`);
   };
 
   return (

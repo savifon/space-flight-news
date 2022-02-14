@@ -29,15 +29,21 @@ export const AppProvider = ({ children }) => {
     setArticles([]);
     setStart(0);
     setContains(contains);
+    setDisplayNextPage(true);
   };
 
   useEffect(() => {
+    const limitSort = start + limit;
+    const startSort = 0;
+
     (async () => {
-      await getArticles(sort, contains, limit, start).then((response) => {
-        const currentArticles = response.data;
-        setArticles(currentArticles);
-        setLoading(false);
-      });
+      await getArticles(sort, contains, limitSort, startSort).then(
+        (response) => {
+          const currentArticles = response.data;
+          setArticles(currentArticles);
+          setLoading(false);
+        }
+      );
     })();
   }, [sort]);
 

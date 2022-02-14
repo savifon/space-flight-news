@@ -72,6 +72,7 @@ const Article = ({ article, index }) => {
           </Grid>
 
           <Typography component="p">{article.summary}</Typography>
+
           <Button onClick={handleOpen} variant="contained">
             Ver mais
           </Button>
