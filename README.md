@@ -20,5 +20,8 @@ Para baixar, executar e acessar o projeto, siga os passos:
 3. `npm install` ou `yarn install`
 5. `npm start` ou `yarn start`
 
-> This is a challenge by [Coodesh](https://coodesh.com/) \
+> <sub><sup>This is a challenge by [Coodesh](https://coodesh.com/)<sub><sup>
+
+<!--
 > Acesse [aqui](https://www.loom.com/embed/dd7e9f060cd84691807f107432eff3b4) o vídeo de apresentação
+-->
